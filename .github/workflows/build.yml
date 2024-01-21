@@ -4,8 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       tag:
+        description: Which tag?
         type: string
-        default: v4.2
+        default: 'v4.2'
+        required: true
 jobs:
   release:
     runs-on: ubuntu-latest
