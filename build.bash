@@ -45,7 +45,7 @@ curl -sSL \
   -xz \
   -C /usr/local/bin/ \
   --strip-components=1 \
-  "stack-${stack_version}-linux-${stack_architecture}/stack" 
+  "stack-${stack_version}-linux-${stack_architecture}/stack"
 chmod +x /usr/local/bin/stack
 
 # This is a dirty hack
@@ -54,6 +54,7 @@ ar cr /usr/lib/libXrandr.a
 
 # build the binary
 stack build \
+  --allow-different-user \
   --copy-bins \
   --local-bin-path='./dist' \
   --skip-ghc-check \
