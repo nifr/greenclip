@@ -12,6 +12,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         architecture: [amd64, arm64]
     permissions:
