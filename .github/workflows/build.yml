@@ -53,8 +53,8 @@ jobs:
             --rm \
             --platform='linux/${{ matrix.architecture }}'
             -v "${PWD}:${PWD}" \
-	    --workdir="${PWD}" \
-	    glcr.b-data.ch/ghc/ghc-musl:9.6.2 \
+            --workdir="${PWD}" \
+            'glcr.b-data.ch/ghc/ghc-musl:9.6.2' \
               ./build.sh
           cp \
             ./dist/greenclip \
