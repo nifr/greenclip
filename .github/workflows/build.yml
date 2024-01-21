@@ -52,7 +52,7 @@ jobs:
         with:
           name: greenclip-${{ matrix.architecture }}
           path: greenclip-${{ matrix.architecture }}
-     - name: Create Release
+      - name: Create Release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ inputs.tag }}
