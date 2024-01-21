@@ -38,23 +38,27 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: greenclip
-        id: docker_build_greenclip
-        uses: docker/build-push-action@v3
-        with:
-          push: true
-          platforms: linux/${{ matrix.architecture }}
-          tags: ghcr.io/${{ github.repository_owner }}/greenclip:latest-${{ matrix.architecture }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-      - name: extract Artifact
+      # - name: greenclip
+      #  id: docker_build_greenclip
+      #  uses: docker/build-push-action@v3
+      #  with:
+      #    push: true
+      #    platforms: linux/${{ matrix.architecture }}
+      #    tags: ghcr.io/${{ github.repository_owner }}/greenclip:latest-${{ matrix.architecture }}
+      #    cache-from: type=gha
+      #    cache-to: type=gha,mode=max
+      - name: Build "greenclip"
         run: |
           docker run \
             --rm \
-            -v $(pwd):/data ghcr.io/${{ github.repository_owner }}/greenclip:latest-${{ matrix.architecture }} \
-            /bin/cp \
-              ./greenclip \
-              /data/greenclip-${{ matrix.architecture }}
+            --platform='linux/${{ matrix.architecture }}'
+            -v "${PWD}:${PWD}" \
+	    --workdir="${PWD}" \
+	    glcr.b-data.ch/ghc/ghc-musl:9.6.2 \
+              ./build.sh
+          cp \
+            ./dist/greenclip \
+            ./greenclip-${{ matrix.architecture }}
       - uses: actions/upload-artifact@v4
         with:
           name: greenclip-${{ matrix.architecture }}
