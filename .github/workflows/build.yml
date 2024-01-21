@@ -61,7 +61,7 @@ jobs:
           # rename the binary for current architecture
           cp \
             ./dist/greenclip \
-            ./greenclip-${{ matrix.architecture }}
+            ./../greenclip-${{ matrix.architecture }}
       - uses: actions/upload-artifact@v4
         with:
           name: greenclip-${{ matrix.architecture }}
