@@ -1,10 +1,12 @@
 FROM alpine:3.16 as builder
+ARG TARGETARCH
 
 RUN apk --no-cache add ca-certificates xz make git curl llvm13 llvm13-dev musl-dev gmp-dev zlib-dev pcre-dev libx11-dev libxcb-dev libxrandr-dev libx11-static libxcb-static libxrandr libxscrnsaver-dev
 RUN  apk --no-cache add --repository http://dl-cdn.alpinelinux.org/alpine/v3.17/community --repository http://dl-cdn.alpinelinux.org/alpine/v3.17/main llvm14 ghc
 
-RUN  curl -sSL https://github.com/commercialhaskell/stack/releases/download/v2.13.1/stack-2.13.1-linux-x86_64-static.tar.gz | tar xvz && \
-    mv stack*/stack /usr/bin
+RUN  curl -sSL https://github.com/commercialhaskell/stack/releases/download/v2.13.1/stack-2.13.1-linux-$(case "${TARGETARCH}" in 'amd64') echo -n  'x86_64';; 'arm64') echo -n 'aarch64';;  esac).tar.gz \
+| tar xvz && \
+mv stack*/stack /usr/bin
 
 COPY stack.yaml /mnt
 COPY *.cabal /mnt
