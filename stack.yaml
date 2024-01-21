@@ -15,8 +15,14 @@
 # resolver:
 #  name: custom-snapshot
 #  location: "./custom-snapshot.yaml"
-resolver: ghc-9.8.1
+resolver: lts-22.7
 #resolver: lts-19.33
+
+allow-newer: true
+allow-newer-deps:
+  - protolude
+  - text
+  - validation-selective
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
