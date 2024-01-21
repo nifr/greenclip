@@ -16,7 +16,7 @@ jobs:
       matrix:
         architecture: [amd64, arm64]
     permissions:
-      contents: read
+      contents: write
       packages: write
     steps:
       - name: Check out the repo
