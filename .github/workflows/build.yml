@@ -48,6 +48,7 @@ jobs:
       #    cache-from: type=gha
       #    cache-to: type=gha,mode=max
       - name: Build "greenclip"
+        working-directory: ./greenclip
         run: |
           # build the binary
           docker run \
