@@ -18,6 +18,14 @@
 resolver: lts-22.7
 #resolver: lts-19.33
 
+docker:
+  enable: false
+  repo: glcr.b-data.ch/ghc/ghc-musl:9.6.2
+system-ghc: true
+
+# see:
+
+
 allow-newer: true
 allow-newer-deps:
   - protolude
