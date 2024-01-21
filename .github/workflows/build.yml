@@ -51,6 +51,9 @@ jobs:
       - name: Build "greenclip"
         working-directory: repository
         run: |
+          # list files for debugging
+          ls -la
+          pwd
           # build the binary
           docker run \
             --rm \
