@@ -48,20 +48,20 @@ jobs:
       #    cache-from: type=gha
       #    cache-to: type=gha,mode=max
       - name: Build "greenclip"
-        working-directory: ./greenclip
+        # working-directory: ./greenclip
         run: |
           # build the binary
           docker run \
             --rm \
             --platform='linux/${{ matrix.architecture }}' \
-            -v "${PWD}:${PWD}" \
-            --workdir="${PWD}" \
+            -v "$(pwd):$(pwd)" \
+            --workdir="$(pwd)" \
             'glcr.b-data.ch/ghc/ghc-musl:9.6.2' \
               ./build.bash
           # rename the binary for current architecture
           cp \
             ./dist/greenclip \
-            ./../greenclip-${{ matrix.architecture }}
+            ./greenclip-${{ matrix.architecture }}
       - uses: actions/upload-artifact@v4
         with:
           name: greenclip-${{ matrix.architecture }}
