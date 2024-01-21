@@ -35,7 +35,6 @@ apk --no-cache add \
   "${apk_dependencies[@]}"
 
 # install stack
-export TARGETARCH='arm64'
 readonly stack_version='2.13.1'
 readonly stack_architecture="$(case "${TARGETARCH}" in 'amd64') echo -n  'x86_64';; 'arm64') echo -n 'aarch64';;  esac)"
 curl -sSL \
