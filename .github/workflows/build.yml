@@ -60,6 +60,7 @@ jobs:
           docker run \
             --rm \
             --platform='linux/${{ matrix.architecture }}' \
+            -e TARGETARCH=${{ matrix.architecture }} \
             -v "$(pwd):$(pwd)" \
             --workdir="$(pwd)" \
             'glcr.b-data.ch/ghc/ghc-musl:9.6.2' \
