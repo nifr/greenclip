@@ -7,10 +7,10 @@ declare -ra apk_dependencies=(
   xz
   git
   make
-  # gcompat
-  # gcc
-  # g++
-  # libstdc++
+  gcompat
+  gcc
+  g++
+  libstdc++
   musl-dev
   gmp-dev
   zlib-dev
@@ -25,6 +25,10 @@ declare -ra apk_dependencies=(
   libxscrnsaver-dev
   libxinerama
   libxinerama-dev
+)
+apk --no-cache add \
+  "${apk_dependencies[@]}"
+declare -ra apk_dependencies_newer=(
   llvm14
   llvm14-dev
   # ghc
